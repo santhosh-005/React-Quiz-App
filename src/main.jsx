@@ -7,8 +7,8 @@ import ResultComponent from './components/ResultComponent'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <HomeComponent />
+    {/* <HomeComponent /> */}
     <QuizComponent />
-    <ResultComponent />
+    {/* <ResultComponent /> */}
   </React.StrictMode>,
 )
