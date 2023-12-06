@@ -31,7 +31,7 @@ export default class QuizComponent extends Component {
   };
 
   handleQuit = () => {
-    confirm("Are you sure to quit a question") ? this.handleNext() : null;
+    confirm("Are you sure you want to quit ?") ? this.handleNext() : null;
   };
 
   render() {
