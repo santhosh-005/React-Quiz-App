@@ -1,14 +1,12 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import HomeComponent from './components/HomeComponent'
-import QuizComponent from './components/QuizComponent'
-import ResultComponent from './components/ResultComponent'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import App from "./App";
 
-
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    {/* <HomeComponent /> */}
-    <QuizComponent />
-    {/* <ResultComponent /> */}
-  </React.StrictMode>,
-)
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>
+);

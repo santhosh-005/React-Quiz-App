@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import "./app.css";
 import quizQuestion from "./resources/quizQuestion.json";
-
+import { Link } from "react-router-dom";
 export default class QuizComponent extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       currentQues: 1,
       preBtnState: false,
@@ -23,15 +23,23 @@ export default class QuizComponent extends Component {
 
   handleNext = () => {
     this.state.currentQues !== quizQuestion.length
-      ? this.setState({
+      ? (this.setState({
           currentQues: this.state.currentQues + 1,
           preBtnState: true,
-        })
+        }),this.props.updateAttemptQuiz())
       : this.setState({ nextBtnState: false });
   };
 
   handleQuit = () => {
     confirm("Are you sure you want to quit ?") ? this.handleNext() : null;
+  };
+
+  handleAnswers = (clickedOption) => {
+    clickedOption == quizQuestion[this.state.currentQues - 1].answer
+      ? (alert("Correct Answer 🙂"),
+        this.props.updateScore())
+      : alert("Wrong Answer 🫤");
+    this.handleNext();
   };
 
   render() {
@@ -42,10 +50,18 @@ export default class QuizComponent extends Component {
           <p>{this.state.currentQues} of 15</p>
           <h3>{quizQuestion[this.state.currentQues - 1].question}</h3>
           <div id="answer-box">
-            <button>{quizQuestion[this.state.currentQues - 1].optionA}</button>
-            <button>{quizQuestion[this.state.currentQues - 1].optionC}</button>
-            <button>{quizQuestion[this.state.currentQues - 1].optionD}</button>
-            <button>{quizQuestion[this.state.currentQues - 1].optionB}</button>
+            <button onClick={(e) => this.handleAnswers(e.target.innerText)}>
+              {quizQuestion[this.state.currentQues - 1].optionA}
+            </button>
+            <button onClick={(e) => this.handleAnswers(e.target.innerText)}>
+              {quizQuestion[this.state.currentQues - 1].optionC}
+            </button>
+            <button onClick={(e) => this.handleAnswers(e.target.innerText)}>
+              {quizQuestion[this.state.currentQues - 1].optionD}
+            </button>
+            <button onClick={(e) => this.handleAnswers(e.target.innerText)}>
+              {quizQuestion[this.state.currentQues - 1].optionB}
+            </button>
           </div>
           <div id="option-box">
             <button
@@ -75,6 +91,8 @@ export default class QuizComponent extends Component {
             >
               Quit
             </button>
+
+            <button style={{ border: "2px solid red" }}><Link to="/result">Finish</Link></button>
           </div>
         </div>
       </div>

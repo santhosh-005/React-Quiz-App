@@ -95,3 +95,7 @@ flex-direction: column;
 justify-content: space-around;
 align-items: center;
 }
+
+button:hover{
+cursor: pointer;
+}
